@@ -11,31 +11,21 @@
         import { getFirestore, doc, getDoc, addDoc, setDoc, updateDoc, deleteDoc, onSnapshot, collection, query, where, getDocs } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
         import { setLogLevel } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
         setLogLevel('debug');
-        
+    
         // ==========================================================
-        // IMPORTANT: REPLACE THE FOLLOWING PLACEHOLDERS WITH YOUR
-        // ACTUAL FIREBASE CONFIGURATION AND AUTHENTICATION TOKEN.
-        // YOU CAN FIND THIS IN YOUR FIREBASE CONSOLE.
+        // Firebase Configuration is now loaded from the Flask backend
+        // and is not hardcoded here.
         // ==========================================================
-        const firebaseConfig = {
-          apiKey: "AIzaSyBWLxlj2nIasM0N9W4mcsHfQfAOBGaZ7LQ",
-          authDomain: "ingwenyakazi-app.firebaseapp.com",
-          projectId: "ingwenyakazi-app",
-          storageBucket: "ingwenyakazi-app.firebasestorage.app",
-          messagingSenderId: "648097613843",
-          appId: "1:648097613843:web:14aab39eecf1d79770d7e6",
-        measurementId: "G-BC2DCXDVZK"
-        };
-        const initialAuthToken = null;
+        const firebaseConfig = {{ firebase_config | safe }};
         const appId = firebaseConfig.appId;
+        const initialAuthToken = null;
         // ==========================================================
-        
+    
         let app = null;
         let db = null;
         let auth = null;
         let userId = null;
-        
-        // This is a placeholder for the Flask server URL
+    
         const backendUrl = '/send_email';
         // Wait for the window to load before initializing
         window.onload = function() {

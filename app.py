@@ -1,9 +1,10 @@
 from flask import Flask, render_template, request, jsonify
 from flask_mail import Mail, Message
 import os
-from dotenv import load_dotenv  # New import
+from dotenv import load_dotenv
+import json  # New import
 
-load_dotenv()  # This loads the variables from the .env file
+load_dotenv()
 
 app = Flask(__name__)
 
@@ -22,7 +23,12 @@ mail = Mail(app)
 @app.route('/')
 def home():
     """Renders the frontend HTML page."""
-    return render_template('frontend.html')
+    # Load the Firebase config from the .env file
+    firebase_config_str = os.environ.get('FIREBASE_CONFIG')
+    firebase_config = json.loads(firebase_config_str) if firebase_config_str else {}
+    
+    # Pass the config to the HTML template
+    return render_template('frontend.html', firebase_config=json.dumps(firebase_config))
 
 @app.route('/send_email', methods=['POST'])
 def send_email():
