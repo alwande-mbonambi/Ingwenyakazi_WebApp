@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ingwenyakazi Housekeeping Agency</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .transparent-navbar {
+            background-color: transparent;
+        }
+        .solid-navbar {
+            background-color: #000033; /* A custom navy blue color */
+        }
+        /* Custom heavy shadow for service boxes */
+        .heavy-shadow {
+            box-shadow: 0 0 15px 5px rgba(255, 255, 255, 0.4);
+        }
+        
+        .nav-link.active-line {
+            position: relative;
+        }
+
+        .nav-link.active-line::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: -8px;
+            width: 0;
+            height: 2px;
+            background-color: #FACC15; /* Tailwind yellow-400 */
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        .nav-link.active-line.active::after,
+        .nav-link.active-line:hover::after {
+            width: 100%;
+        }
+    </style>
+</head>
+<body class="bg-blue-50 text-gray-800">
+
+    <!-- Top Navigation Bar -->
+    <nav class="fixed top-0 left-0 w-full z-50 p-4 transition-colors duration-300 transparent-navbar">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <!-- Logo -->
+            <div class="flex items-center space-x-2">
+                <img src="https://res.cloudinary.com/dcfa8oisr/image/upload/v1756734504/WhatsApp_Image_2025-09-01_at_12.51.39-removebg-preview_bss6jb.png" alt="Ingwenyakazi Logo" class="h-16 w-auto">
+                <span class="text-white text-2xl font-bold tracking-wider">INGWENYAKAZI</span>
+            </div>
+            
+            <!-- Navigation Links -->
+            <ul class="flex space-x-6 md:space-x-10 text-white font-medium">
+                <li><a href="#hero" class="nav-link active-line transition-colors duration-200" data-link="hero">Home</a></li>
+                <li><a href="#services" class="nav-link active-line transition-colors duration-200" data-link="services">Services</a></li>
+                <li><a href="#contact" class="nav-link active-line transition-colors duration-200" data-link="contact">Contact</a></li>
+                <li><a href="#about" class="nav-link active-line transition-colors duration-200" data-link="about">About</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section with Video Background -->
+    <header id="hero" class="relative w-full h-screen flex items-center justify-center p-4 text-center text-white overflow-hidden shadow-lg">
+        <!-- Add your video link here -->
+        <video autoplay muted loop class="absolute top-0 left-0 w-full h-full object-cover z-0 opacity-75">
+            <source src="https://res.cloudinary.com/dcfa8oisr/video/upload/v1756731377/Untitled_design_2_ja2ggf.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="absolute inset-0 bg-gray-800/30 z-10"></div>
+        <div class="relative z-20 flex flex-col items-center max-w-4xl px-4 md:px-0">
+            <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight drop-shadow-lg"><span class="text-white">INGWENYAKAZI</span><br><span class="text-yellow-400">HOUSEKEEPER / CLEANING AGENCY</span></h1>
+            <p class="text-xl md:text-2xl font-light mt-4 mb-8 drop-shadow-lg">Finding the right help for your home has never been easier!</p>
+            <div class="flex items-center space-x-2 mb-4">
+                <span class="text-2xl text-yellow-400">★</span>
+                <span class="text-2xl text-yellow-400">★</span>
+                <span class="text-2xl text-yellow-400">★</span>
+                <span class="text-2xl text-yellow-400">★</span>
+                <span class="text-2xl text-yellow-400">★</span>
+                <span class="text-xl font-semibold">5.0</span>
+            </div>
+            <a href="#contact" class="bg-cyan-500 text-white font-bold py-3 px-8 rounded-full shadow-lg hover:bg-cyan-600 transition-colors duration-300">Book Now</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Services Section -->
+        <section id="services" class="w-full bg-[#01BE62] py-16 px-4 md:px-8 shadow-xl text-white">
+            <div class="max-w-6xl mx-auto">
+                <h3 class="text-3xl md:text-4xl font-bold text-center mb-2">Our Services</h3>
+                <p class="text-md text-center mb-10 text-white">Click on a service for more details.</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    
+                    <!-- Housekeeper Placement -->
+                    <div class="p-6 rounded-xl heavy-shadow transition-transform duration-300 service-item cursor-pointer hover:scale-105 bg-[#1800ae] text-white hover:bg-[#110077]" data-service="housekeeper">
+                        <div class="flex items-center mb-4">
+                            <img src="https://res.cloudinary.com/dcfa8oisr/image/upload/v1756764712/inverted-image_g0qbwj.png" alt="Housekeeper Icon" class="h-8 w-8 mr-3">
+                            <h4 class="text-xl font-bold text-yellow-400">Housekeeper Placement</h4>
+                        </div>
+                        <ul class="space-y-3">
+                            <li class="flex justify-between items-center text-white">
+                                <span>Permanent</span>
+                                <span class="text-lg font-bold text-white">R1000</span>
+                            </li>
+                            <li class="flex justify-between items-center text-white">
+                                <span>Part-time</span>
+                                <span class="text-lg font-bold text-white">R700</span>
+                            </li>
+                        </ul>
+                        <div class="mt-4 text-sm text-white service-description hidden" data-service-desc="housekeeper">
+                            <p>We provide a comprehensive screening process to ensure we connect you with reliable and trustworthy housekeepers for both permanent and part-time positions. Our candidates are experienced, vetted, and ready to meet your needs.</p>
+                        </div>
+                    </div>
+
+                    <!-- Residential Cleaning -->
+                    <div class="p-6 rounded-xl heavy-shadow transition-transform duration-300 service-item cursor-pointer hover:scale-105 bg-[#1800ae] text-white hover:bg-[#110077]" data-service="residential">
+                        <div class="flex items-center mb-4">
+                            <img src="https://res.cloudinary.com/dcfa8oisr/image/upload/v1756765038/inverted-image_1_kvlw3b.png" alt="Residential Cleaning Icon" class="h-8 w-8 mr-3">
+                            <h4 class="text-xl font-bold text-yellow-400">Residential Cleaning</h4>
+                        </div>
+                        <ul class="space-y-3">
+                            <li class="flex justify-between items-center text-white">
+                                <span>Regular/standard cleaning</span>
+                                <span class="text-lg font-bold text-white">R350</span>
+                            </li>
+                            <li class="flex justify-between items-center text-white">
+                                <span>Move-in/move-out cleaning</span>
+                                <span class="text-lg font-bold text-white">R350</span>
+                            </li>
+                            <li class="flex justify-between items-center text-white">
+                                <span>Spring cleaning</span>
+                                <span class="text-lg font-bold text-white">R1000</span>
+                            </li>
+                        </ul>
+                        <div class="mt-4 text-sm text-white service-description hidden" data-service-desc="residential">
+                            <p>Our residential cleaning services cover everything from daily tidying to deep, comprehensive spring cleaning. We use high-quality products and trained staff to ensure your home is sparkling clean and inviting.</p>
+                        </div>
+                    </div>
+
+                    <!-- Speciality Cleaning -->
+                    <div class="p-6 rounded-xl heavy-shadow transition-transform duration-300 service-item cursor-pointer hover:scale-105 bg-[#1800ae] text-white hover:bg-[#110077]" data-service="speciality">
+                        <div class="flex items-center mb-4">
+                            <img src="https://res.cloudinary.com/dcfa8oisr/image/upload/v1756765349/inverted-image_2_jmcwqn.png" alt="Speciality Cleaning Icon" class="h-8 w-8 mr-3">
+                            <h4 class="text-xl font-bold text-yellow-400">Speciality Cleaning</h4>
+                        </div>
+                        <ul class="space-y-3">
+                            <li class="flex justify-between items-center text-white">
+                                <span>Garden</span>
+                                <span class="text-lg font-bold text-white">R250</span>
+                            </li>
+                            <li class="flex justify-between items-center text-white">
+                                <span>Windows</span>
+                                <span class="text-lg font-bold text-white">R300</span>
+                            </li>
+                        </ul>
+                        <div class="mt-4 text-sm text-white service-description hidden" data-service-desc="speciality">
+                            <p>For those special jobs, our team is equipped to handle specific areas like garden and window cleaning. We bring the right tools and expertise to make every part of your property shine.</p>
+                        </div>
+                    </div>
+
+                    <!-- Housecall Ironing -->
+                    <div class="p-6 rounded-xl heavy-shadow transition-transform duration-300 service-item cursor-pointer hover:scale-105 bg-[#1800ae] text-white hover:bg-[#110077]" data-service="ironing">
+                        <div class="flex items-center mb-4">
+                            <img src="https://res.cloudinary.com/dcfa8oisr/image/upload/v1756765444/inverted-image_3_et7wbx.png" alt="Housecall Ironing Icon" class="h-8 w-8 mr-3">
+                            <h4 class="text-xl font-bold text-yellow-400">Housecall Ironing</h4>
+                        </div>
+                        <div class="flex justify-between items-center text-white">
+                            <span>Service fee</span>
+                            <span class="text-lg font-bold text-white">R500</span>
+                        </div>
+                        <div class="mt-4 text-sm text-white service-description hidden" data-service-desc="ironing">
+                            <p>Our convenient housecall ironing service saves you time and effort. We come to you and take care of your laundry, leaving you with perfectly pressed clothes.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Contact Section -->
+        <section id="contact" class="w-full bg-[#01BE62] py-16 px-4 md:px-8 text-white">
+            <div class="max-w-4xl mx-auto text-center mb-10">
+                <h3 class="text-3xl md:text-4xl font-bold mb-4">Get in Touch</h3>
+                <p class="text-lg md:text-xl font-light">Ready to simplify your life? Fill out the form below to inquire about our services and receive a personalized quote or book a specific service at its previewed price and we will get back to you.</p>
+            </div>
+            
+            <div class="max-w-2xl mx-auto p-8 rounded-2xl shadow-xl bg-[#1800ae]">
+                <form id="contact-form" class="space-y-6">
+                    <div>
+                        <label for="name" class="block text-sm font-medium mb-1 text-white">Your Name</label>
+                        <input type="text" id="name" name="name" required class="w-full p-3 rounded-lg border border-gray-300 text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-cyan-300" placeholder="e.g. Sibusiso Ngcobo">
+                    </div>
+                    <div>
+                        <label for="email" class="block text-sm font-medium mb-1 text-white">Email Address</label>
+                        <input type="email" id="email" name="email" required class="w-full p-3 rounded-lg border border-gray-300 text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-cyan-300" placeholder="e.g. sibusiso.ngcobo@gmail.com">
+                    </div>
+                    <div>
+                        <label for="service" class="block text-sm font-medium mb-1 text-white">Service of Interest</label>
+                        <select id="service" name="service" required class="w-full p-3 rounded-lg border border-gray-300 text-gray-800 focus:outline-none focus:ring-2 focus:ring-cyan-300">
+                            <option value="" disabled selected>Select a service...</option>
+                            <option value="Housekeeper Placement - Permanent">Housekeeper Placement (Permanent)</option>
+                            <option value="Housekeeper Placement - Part-time">Housekeeper Placement (Part-time)</option>
+                            <option value="Residential - Regular/Standard">Residential Cleaning (Regular/Standard)</option>
+                            <option value="Residential - Move-in/out">Residential Cleaning (Move-in/out)</option>
+                            <option value="Residential - Spring">Residential Cleaning (Spring)</option>
+                            <option value="Speciality - Garden">Speciality Cleaning (Garden)</option>
+                            <option value="Speciality - Windows">Speciality Cleaning (Windows)</option>
+                            <option value="Housecall Ironing">Housecall Ironing</option>
+                            <option value="Combined Services">Combined Services</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="message" class="block text-sm font-medium mb-1 text-white">Your Message</label>
+                        <textarea id="message" name="message" rows="4" required class="w-full p-3 rounded-lg border border-gray-300 text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-cyan-300" placeholder="e.g. I need a housekeeper for Tuesdays and Thursdays."></textarea>
+                    </div>
+                    <button type="submit" id="submit-btn" class="w-full py-3 mt-4 rounded-lg font-bold text-white bg-cyan-500 hover:bg-cyan-600 transition-colors">Submit Inquiry</button>
+                </form>
+
+                <!-- Modal for confirmation message -->
+                <div id="modal-success" class="fixed inset-0 bg-gray-900 bg-opacity-75 flex items-center justify-center hidden">
+                    <div class="bg-white p-8 rounded-lg shadow-lg max-w-sm text-center">
+                        <h4 id="modal-title" class="text-xl font-bold text-gray-800 mb-4"></h4>
+                        <p id="modal-message" class="text-gray-600 mb-6"></p>
+                        <button id="modal-close" class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors">Close</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="w-full bg-[#01BE62] py-16 px-4 md:px-8 shadow-xl">
+            <div class="max-w-6xl mx-auto text-center">
+                <h3 class="text-3xl md:text-4xl font-bold mb-4 text-white">About Us</h3>
+                <p class="text-lg md:text-xl font-light max-w-2xl mx-auto leading-relaxed text-white">
+                    Established in 2025, Ingwenyakazi Housekeeper and Cleaning Agency is a leading quality cleaning company serving the community with professional and trusted staff. We specialize in residential and commercial cleaning, providing effective and long-lasting results. Our goal is to connect you with the right help for your home, giving you peace of mind.
+                </p>
+            </div>
+        </section>
+        
+        <!-- Footer -->
+        <footer class="w-full bg-[#1800ae] text-white py-8 px-4 md:px-8 text-center">
+            <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
+                <div class="text-lg font-semibold">
+                    <h5 class="mb-2">Contact Information</h5>
+                    <p class="text-sm font-light">Zanele Ngwenya</p>
+                </div>
+                <div>
+                    <ul class="space-y-2">
+                        <li class="flex items-center justify-center md:justify-start">
+                            <span class="mr-2">📞</span>
+                            <a href="tel:+27695135537" class="hover:underline">069 513 5537</a>
+                        </li>
+                        <li class="flex items-center justify-center md:justify-start">
+                            <span class="mr-2">📧</span>
+                            <a href="mailto:ingwenyakazi7@gmail.com" class="hover:underline">ingwenyakazi7@gmail.com</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="text-sm text-gray-400 mt-4 md:mt-0">
+                    &copy; 2025 Ingwenyakazi. All rights reserved.
+                </div>
+            </div>
+        </footer>
+    </main>
+    <script>
+        // JavaScript to add and remove the active class on scroll
+        document.addEventListener('DOMContentLoaded', () => {
+            const sections = document.querySelectorAll('main section, header');
+            const navLinks = document.querySelectorAll('.nav-link');
+            const serviceItems = document.querySelectorAll('.service-item');
+            const serviceDescriptions = document.querySelectorAll('.service-description');
+            const contactForm = document.getElementById('contact-form');
+            const modalSuccess = document.getElementById('modal-success');
+            const modalTitle = document.getElementById('modal-title');
+            const modalMessage = document.getElementById('modal-message');
+            const modalClose = document.getElementById('modal-close');
+            const submitBtn = document.getElementById('submit-btn');
+
+            // Function to handle the active nav link
+            const updateActiveLink = () => {
+                let current = '';
+                const scrollY = window.scrollY;
+                const viewportHeight = window.innerHeight;
+
+                sections.forEach(section => {
+                    const rect = section.getBoundingClientRect();
+                    const sectionId = section.getAttribute('id');
+                    
+                    // A section is considered active if its top is near the top of the viewport
+                    // and its bottom is still within view. For the 'about' section, we adjust the logic
+                    // to ensure it stays active at the very bottom of the page.
+                    if (rect.top <= viewportHeight / 2 && rect.bottom > viewportHeight / 2) {
+                        current = sectionId;
+                    }
+                    
+                    // Special case for the "About" section
+                    if (sectionId === 'about' && rect.top <= viewportHeight / 2) {
+                        current = 'about';
+                    }
+                });
+                
+                // Special case for the "Home" section when at the very top
+                if (scrollY < 100) {
+                    current = 'hero';
+                }
+
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('data-link') === current) {
+                        link.classList.add('active');
+                    }
+                });
+            };
+
+            // Initial call and event listeners for scroll and click
+            updateActiveLink();
+            window.addEventListener('scroll', updateActiveLink);
+            window.addEventListener('resize', updateActiveLink); // Also update on resize
+            
+            // Add a listener to the nav links themselves to handle click events
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    navLinks.forEach(l => l.classList.remove('active'));
+                    link.classList.add('active');
+                });
+            });
+
+            // Add event listener to service boxes to toggle description
+            serviceItems.forEach(item => {
+                item.addEventListener('click', (e) => {
+                    const serviceDesc = item.querySelector('.service-description');
+                    if (serviceDesc) {
+                        serviceDesc.classList.toggle('hidden');
+                    }
+                });
+            });
+
+            // Add event listener to the contact form submission
+            contactForm.addEventListener('submit', async (e) => {
+                e.preventDefault(); // Prevent the default form submission (page reload)
+                
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Sending...';
+
+                const formData = {
+                    name: document.getElementById('name').value,
+                    email: document.getElementById('email').value,
+                    service: document.getElementById('service').value,
+                    message: document.getElementById('message').value,
+                };
+                
+                try {
+                    const response = await fetch('/send_email', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(formData),
+                    });
+
+                    const result = await response.json();
+
+                    if (response.ok) {
+                        modalTitle.textContent = 'Thank you!';
+                        modalMessage.textContent = 'Your interest of service has been sent to us. We will get back to you shortly with a quote or response to your message to finalize your request.Please keep a lookout for a response in your inbox';
+                        contactForm.reset();
+                    } else {
+                        modalTitle.textContent = 'Submission Failed';
+                        modalMessage.textContent = 'There was an error sending your message. Please try again later.';
+                    }
+                } catch (error) {
+                    console.error('Error:', error);
+                    modalTitle.textContent = 'Network Error';
+                    modalMessage.textContent = 'Unable to connect to the server. Please check your connection and try again.';
+                } finally {
+                    modalSuccess.classList.remove('hidden');
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Submit Inquiry';
+                }
+            });
+
+            // Add event listener to the modal close button
+            modalClose.addEventListener('click', () => {
+                modalSuccess.classList.add('hidden');
+            });
+        });
+    </script>
+</body>
+</html>
