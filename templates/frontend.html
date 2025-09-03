@@ -1,31 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Ingwenyakazi Housekeeping Agency</title>
     <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- ===== original module script with firebase (kept intact) ===== -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
         import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
         import { getFirestore, doc, getDoc, addDoc, setDoc, updateDoc, deleteDoc, onSnapshot, collection, query, where, getDocs } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
         import { setLogLevel } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
         setLogLevel('debug');
-    
+        
         // ==========================================================
-        // Firebase Configuration is now loaded from the Flask backend
-        // and is not hardcoded here.
+        // Firebase Configuration is loaded from the Flask backend
         // ==========================================================
         const firebaseConfig = {{ firebase_config | safe }};
         const appId = firebaseConfig.appId;
         const initialAuthToken = null;
         // ==========================================================
-    
         let app = null;
         let db = null;
         let auth = null;
         let userId = null;
-    
+        
+        // This is a placeholder for the Flask server URL
         const backendUrl = '/send_email';
         // Wait for the window to load before initializing
         window.onload = function() {
@@ -192,7 +193,9 @@
                 "https://res.cloudinary.com/dcfa8oisr/image/upload/v1756824971/House_keepe_1_uidjmm.jpg",
                 "https://res.cloudinary.com/dcfa8oisr/image/upload/v1756824971/House_keeper_3_guiqu3.jpg",
                 "https://res.cloudinary.com/dcfa8oisr/image/upload/v1756824984/Housekeeper_5_ljrvo9.jpg",
-                "https://res.cloudinary.com/dcfa8oisr/image/upload/v1756824971/House_keeper_8_y4cwdk.jpg"
+                "https://res.cloudinary.com/dcfa8oisr/image/upload/v1756824971/House_keeper_8_y4cwdk.jpg",
+               "https://res.cloudinary.com/dcfa8oisr/image/upload/v1756843874/black_maid_cleaning_1_lmytmw.jpg",
+                "https://res.cloudinary.com/dcfa8oisr/image/upload/v1756824970/House_keeper_7_wgisi0.jpg"
             ],
             residential: [
                 "https://res.cloudinary.com/dcfa8oisr/image/upload/v1756821710/picture_cleaning_toilet_adhayi.jpg",
@@ -256,19 +259,19 @@
                     switch(serviceType) {
                         case 'housekeeper':
                             title = 'Housekeeper Placement';
-                            description = 'We help you find the perfect permanent or part-time housekeeper to suit your needs. Our rigorous vetting process ensures we place only the most reliable and experienced housekeepers.';
+                            description = 'We help you find the perfect permanent or part-time housekeeper to suit your needs. Our rigorous vetting process ensures we place only the most reliable and experienced housekeepers.We provide quick access to a pool of carefully vetted, experienced Nannies and Domestic Helpers, ready for interviews to save you time. Our team offers expert guidance and support to help you choose the right candidate, especially if you’ve had negative experiences before. Each candidate undergoes comprehensive screening and receives basic training in household etiquette and childcare protocols, with the option of specialized training in essential skills. We offer both permanent and temporary placements tailored to your budget, along with a 3-month guarantee to replace any candidate free of charge if performance does not meet your expectations.';
                             break;
                         case 'residential':
                             title = 'Residential Cleaning';
-                            description = 'Our professional team provides top-notch residential cleaning services, from regular cleaning to deep spring cleaning and detailed move-in/move-out services.';
+                            description = 'When life is too busy and your schedule doesn’t allow you the time to clean your property you may need Ingwenyakazi Cleaning Agency. We will maintain cleanliness in a home or Commercial building. Our professional team provides top-notch residential cleaning services, from regular cleaning to deep spring cleaning and detailed move-in/move-out services.';
                             break;
                         case 'speciality':
                             title = 'Speciality Cleaning';
-                            description = 'Our speciality cleaning services include deep cleaning for gardens, post-event cleanups, and other customized services to meet your specific needs.';
+                            description = 'Our speciality cleaning services include deep cleaning for gardens, inside and outside windows around the house, and other customized services to meet your specific needs- Removal of weeds and weed prevention,Trimming of hedges, Planting and seeding new trees and plants, Tidying, Lawn Mowing, Yard waste removal.';
                             break;
                         case 'ironing':
                             title = 'Housecall Ironing';
-                            description = 'We offer a convenient housecall ironing service, providing professional and efficient ironing right in the comfort of your own home.';
+                            description = 'We offer a convenient housecall ironing service, providing professional and efficient ironing right in the comfort of your own home.providing a convenient solution for busy individuals and families, with additional services of folding clothes after straightning them';
                             break;
                     }
                     
@@ -405,6 +408,8 @@
             });
         }
     </script>
+
+    <!-- ===== styles (kept original, with transitions) ===== -->
     <style>
         .transparent-navbar {
             background-color: transparent;
@@ -442,6 +447,12 @@
         section {
             scroll-margin-top: 100px; /* Adjust to match the height of your fixed nav bar */
         }
+        /* ensure service items are above any accidental overlays */
+        .service-item {
+            position: relative;
+            z-index: 0;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body class="bg-blue-50 text-gray-800">
@@ -453,13 +464,27 @@
                     <img src="https://res.cloudinary.com/dcfa8oisr/image/upload/v1756734504/WhatsApp_Image_2025-09-01_at_12.51.39-removebg-preview_bss6jb.png" alt="Ingwenyakazi Logo" class="h-16 w-auto">
                     <span class="text-white text-2xl font-bold tracking-wider">INGWENYAKAZI</span>
                 </div>
-                <ul class="flex space-x-6 md:space-x-10 text-white font-medium">
+                <ul class="hidden md:flex space-x-6 md:space-x-10 text-white font-medium">
                     <li><a href="#hero" class="nav-link active-line transition-colors duration-200" data-link="hero">Home</a></li>
                     <li><a href="#services" class="nav-link active-line transition-colors duration-200" data-link="services">Services</a></li>
                     <li><a href="#contact" class="nav-link active-line transition-colors duration-200" data-link="contact">Contact</a></li>
                     <li><a href="#about" class="nav-link active-line transition-colors duration-200" data-link="about">About</a></li>
                     <li><a href="#reviews" class="nav-link active-line transition-colors duration-200" data-link="reviews">Reviews</a></li>
                 </ul>
+
+                <!-- Mobile Hamburger -->
+                <div class="md:hidden">
+                  <button id="hamburgerBtn" class="text-white focus:outline-none text-3xl" aria-label="Open menu">☰</button>
+                </div>
+            </div>
+
+            <!-- Mobile Dropdown -->
+            <div id="mobileMenu" class="hidden flex-col space-y-4 mt-4 text-white font-medium bg-[#000033] p-4 rounded-lg md:hidden">
+                <a href="#hero" class="nav-link block" data-link="hero">Home</a>
+                <a href="#services" class="nav-link block" data-link="services">Services</a>
+                <a href="#contact" class="nav-link block" data-link="contact">Contact</a>
+                <a href="#about" class="nav-link block" data-link="about">About</a>
+                <a href="#reviews" class="nav-link block" data-link="reviews">Reviews</a>
             </div>
         </nav>
 
@@ -471,8 +496,7 @@
             <div class="relative z-20 flex flex-col items-center max-w-4xl px-4 md:px-0">
                 <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight drop-shadow-lg"><span class="text-white">INGWENYAKAZI</span><br><span class="text-yellow-400">HOUSEKEEPER / CLEANING AGENCY</span></h1>
                 <p class="text-xl md:text-2xl font-light mt-4 mb-8 drop-shadow-lg">Finding the right help for your home has never been easier!</p>
-                <div id="heroRatingContainer" class="flex items-center space-x-2 mb-4">
-                    </div>
+                <div id="heroRatingContainer" class="flex items-center space-x-2 mb-4"></div>
                 <a href="#contact" class="bg-cyan-500 text-white font-bold py-3 px-8 rounded-full shadow-lg hover:bg-cyan-600 transition-colors duration-300">Book Now</a>
             </div>
         </header>
@@ -491,11 +515,11 @@
                             <ul class="space-y-3">
                                 <li class="flex justify-between items-center text-white">
                                     <span>Permanent</span>
-                                    <span class="text-lg font-bold text-white">R1000</span>
+                                    
                                 </li>
                                 <li class="flex justify-between items-center text-white">
                                     <span>Part-time</span>
-                                    <span class="text-lg font-bold text-white">R700</span>
+                                    
                                 </li>
                             </ul>
                         </div>
@@ -507,15 +531,15 @@
                             <ul class="space-y-3">
                                 <li class="flex justify-between items-center text-white">
                                     <span>Regular/standard cleaning</span>
-                                    <span class="text-lg font-bold text-white">R350</span>
+                                    
                                 </li>
                                 <li class="flex justify-between items-center text-white">
                                     <span>Move-in/move-out cleaning</span>
-                                    <span class="text-lg font-bold text-white">R350</span>
+                                    
                                 </li>
                                 <li class="flex justify-between items-center text-white">
                                     <span>Spring cleaning</span>
-                                    <span class="text-lg font-bold text-white">R1000</span>
+                                    
                                 </li>
                             </ul>
                         </div>
@@ -527,11 +551,11 @@
                             <ul class="space-y-3">
                                 <li class="flex justify-between items-center text-white">
                                     <span>Garden</span>
-                                    <span class="text-lg font-bold text-white">R250</span>
+                                    
                                 </li>
                                 <li class="flex justify-between items-center text-white">
-                                    <span>Post-event cleaning</span>
-                                    <span class="text-lg font-bold text-white">R350</span>
+                                    <span>Window cleaning</span>
+                                    
                                 </li>
                             </ul>
                         </div>
@@ -543,7 +567,7 @@
                             <ul class="space-y-3">
                                 <li class="flex justify-between items-center text-white">
                                     <span>Service fee</span>
-                                    <span class="text-lg font-bold text-white">R500</span>
+                                    
                                 </li>
                             </ul>
                         </div>
@@ -583,6 +607,19 @@
                             </div>
                             <button id="submitButton" type="submit" class="w-full bg-yellow-400 text-[#1800ae] font-bold py-3 rounded-full hover:bg-yellow-500 transition-colors duration-300 shadow-md">Submit Inquiry</button>
                         </form>
+                    </div>
+                </div>
+            </section>
+          
+          <section id="contact-info" class="w-full bg-[#01BE62] py-16 px-4 md:px-8 shadow-lg text-white">
+                <div class="max-w-4xl mx-auto text-center">
+                    <h3 class="text-3xl md:text-4xl font-bold mb-2">Contact Information</h3>
+                    <div class="bg-[#1800ae] p-8 md:p-12 rounded-lg shadow-lg heavy-shadow">
+                        <div class="space-y-4 text-left">
+                            <p class="text-lg"><strong>Zanele Ngwenya</strong></p>
+                            <p class="text-lg">Mobile: (+27) 69 513 3537</p>
+                            <p class="text-lg">Email: ingwenyakazi7@gmail.com</p>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -662,5 +699,139 @@
                 </div>
         </div>
     </div>
+
+    <!-- ===== Final small script: mobile menu toggle + improved navbar scroll behavior ===== -->
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const hamburgerBtn = document.getElementById('hamburgerBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const navBar = document.querySelector('nav');
+        const heroSection = document.getElementById('hero');
+
+        // Safety checks
+        if (hamburgerBtn && mobileMenu) {
+          // Toggle mobile menu on hamburger click
+          hamburgerBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            mobileMenu.classList.toggle('hidden');
+          });
+
+          // Close menu when a mobile nav link is clicked
+          mobileMenu.querySelectorAll('a').forEach(a => {
+            a.addEventListener('click', () => {
+              mobileMenu.classList.add('hidden');
+            });
+          });
+
+          // Close mobile menu when clicking outside
+          document.addEventListener('click', (ev) => {
+            if (!mobileMenu.classList.contains('hidden')) {
+              if (!mobileMenu.contains(ev.target) && !hamburgerBtn.contains(ev.target)) {
+                mobileMenu.classList.add('hidden');
+              }
+            }
+          });
+        }
+
+        // Improved navbar transition:
+        // Use hero height so navbar becomes solid once user has scrolled past most of the hero.
+        function updateNavbar() {
+          if (!heroSection || !navBar) return;
+          // When scrolled past hero height minus a bit (so transition happens earlier)
+          if (window.scrollY > Math.max(20, heroSection.offsetHeight - 120)) {
+            navBar.classList.remove('transparent-navbar');
+            navBar.classList.add('solid-navbar');
+          } else {
+            navBar.classList.remove('solid-navbar');
+            navBar.classList.add('transparent-navbar');
+          }
+        }
+
+        // Run on load and on scroll
+        updateNavbar();
+        window.addEventListener('scroll', updateNavbar);
+        window.addEventListener('resize', updateNavbar);
+
+        // Ensure service-item click handlers remain active:
+        // (setupServicePages() from module script already attaches handlers on window.onload,
+        //  but in case elements are re-rendered or DOMContentLoaded timing differs, add a safety rebind)
+        function rebindServiceClicks() {
+          const serviceItems = document.querySelectorAll('.service-item');
+          const mainContent = document.getElementById('mainContent');
+          const serviceDetail = document.getElementById('serviceDetail');
+          const backButton = document.getElementById('backButton');
+          const serviceTitle = document.getElementById('serviceTitle');
+          const serviceDescription = document.getElementById('serviceDescription');
+          const serviceImageContainer = document.getElementById('serviceImageContainer');
+
+          serviceItems.forEach(item => {
+            // avoid adding duplicate listeners: remove clones by replacing node
+            const clone = item.cloneNode(true);
+            item.parentNode.replaceChild(clone, item);
+
+            clone.addEventListener('click', () => {
+              // use same data-service attribute logic as original setupServicePages
+              const serviceType = clone.getAttribute('data-service');
+              // call existing logic by reusing the serviceImages map and text
+              let title = '';
+              let description = '';
+              switch(serviceType) {
+                case 'housekeeper':
+                  title = 'Housekeeper Placement';
+                  description = 'We help you find the perfect permanent or part-time housekeeper to suit your needs. Our rigorous vetting process ensures we place only the most reliable and experienced housekeepers.We provide quick access to a pool of carefully vetted, experienced Nannies and Domestic Helpers, ready for interviews to save you time. Our team offers expert guidance and support to help you choose the right candidate, especially if you’ve had negative experiences before. Each candidate undergoes comprehensive screening and receives basic training in household etiquette and childcare protocols, with the option of specialized training in essential skills. We offer both permanent and temporary placements tailored to your budget, along with a 3-month guarantee to replace any candidate free of charge if performance does not meet your expectations.';
+                  break;
+                case 'residential':
+                  title = 'Residential Cleaning';
+                  description = 'When life is too busy and your schedule doesn’t allow you the time to clean your property you may need Ingwenyakazi Cleaning Agency. We will maintain cleanliness in a home or Commercial building. Our professional team provides top-notch residential cleaning services, from regular cleaning to deep spring cleaning and detailed move-in/move-out services.';
+                  break;
+                case 'speciality':
+                  title = 'Speciality Cleaning';
+                  description = 'Our speciality cleaning services include deep cleaning for gardens, inside and outside windows around the house, and other customized services to meet your specific needs- Removal of weeds and weed prevention,Trimming of hedges, Planting and seeding new trees and plants, Tidying, Lawn Mowing, Yard waste removal.';
+                  break;
+                case 'ironing':
+                  title = 'Housecall Ironing';
+                  description = 'We offer a convenient housecall ironing service, providing professional and efficient ironing right in the comfort of your own home.providing a convenient solution for busy individuals and families, with additional services of folding clothes after straightning them';
+                  break;
+              }
+
+              // Update detail content
+              if (serviceTitle) serviceTitle.textContent = title;
+              if (serviceDescription) serviceDescription.textContent = description;
+
+              // display images using serviceImages map (declared in module script)
+              const images = (window.serviceImages && window.serviceImages[serviceType]) || (typeof serviceImages !== 'undefined' && serviceImages[serviceType]) || [];
+              if (serviceImageContainer) {
+                serviceImageContainer.innerHTML = '';
+                if (images.length > 0) {
+                  const imageHtml = images.map(url => `<img src="${url}" alt="${title} image" class="w-full h-auto rounded-lg shadow-lg">`).join('');
+                  serviceImageContainer.innerHTML = `<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">${imageHtml}</div>`;
+                } else {
+                  serviceImageContainer.innerHTML = '<p class="text-gray-600">No images available for this service.</p>';
+                }
+              }
+
+              if (mainContent) mainContent.classList.add('hidden');
+              if (serviceDetail) serviceDetail.classList.remove('hidden');
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+          });
+
+          // back button rebind
+          if (backButton) {
+            backButton.addEventListener('click', () => {
+              if (mainContent) mainContent.classList.remove('hidden');
+              if (serviceDetail) serviceDetail.classList.add('hidden');
+              const servicesSection = document.getElementById('services');
+              if (servicesSection) {
+                servicesSection.scrollIntoView({ behavior: 'smooth' });
+              }
+            });
+          }
+        }
+
+        // run the rebind once DOM is ready
+        rebindServiceClicks();
+      });
+    </script>
 </body>
 </html>
